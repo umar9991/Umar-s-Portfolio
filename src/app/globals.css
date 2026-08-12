@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #070708;
+  --foreground: #f4f4f5;
+  --accent: #5eead4;
+  --muted: #a1a1aa;
+  --border: #27272a;
+  --header-h: 96px;
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-padding-top: var(--header-h);
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-feature-settings: "ss01" on, "cv11" on;
+}
+
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
+::selection {
+  background: rgba(94, 234, 212, 0.28);
+  color: #070708;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #070708;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5eead4;
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.24em] text-accent;
+  }
+
+  .display {
+    @apply font-display text-4xl font-medium leading-[1.08] tracking-[-0.025em] text-foreground sm:text-5xl md:text-6xl lg:text-7xl;
+  }
+
+  .body {
+    @apply text-base leading-relaxed text-muted sm:text-[1.0625rem] sm:leading-relaxed;
+  }
+
+  .surface-panel {
+    @apply border border-border/80 bg-card/60 backdrop-blur-sm;
+  }
+
+  .link-underline {
+    @apply relative inline-block after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-current after:transition-transform after:duration-300 hover:after:scale-x-100;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .mask-fade-r {
+    mask-image: linear-gradient(90deg, #000 85%, transparent);
+  }
+}
