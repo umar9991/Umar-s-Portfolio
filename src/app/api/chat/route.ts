@@ -15,9 +15,9 @@ type Body = {
   history?: ChatMessage[];
 };
 
-const MODEL = "llama-3.3-70b-versatile";
-// Tradeoff: 70B = stronger grounding/accuracy for recruiters.
-// Swap to "llama-3.1-8b-instant" for lower latency/cost if needed.
+const MODEL = "openai/gpt-oss-120b";
+// Tradeoff: 120B = stronger grounding/accuracy for recruiters.
+// Swap to "openai/gpt-oss-20b" for lower latency/cost if needed.
 
 const MAX_MESSAGE_CHARS = 800;
 const MAX_HISTORY = 8;
@@ -93,7 +93,9 @@ export async function POST(request: Request) {
     const completion = await groq.chat.completions.create({
       model: MODEL,
       temperature: 0.2,
-      max_tokens: 320,
+      // Reasoning tokens count against this budget, so keep effort low and headroom high.
+      reasoning_effort: "low",
+      max_completion_tokens: 1024,
       stream: true,
       messages: [
         { role: "system", content: SYSTEM_PROMPT },

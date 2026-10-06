@@ -124,7 +124,7 @@ Non-stream JSON errors (400 / 429 / 503 / 502) are returned when the request fai
 - Greeting policy — short small-talk; no résumé dump on “hi”
 - Tone — third person (“Umar has…”) for substantive answers
 
-**Model choice:** `llama-3.3-70b-versatile` for better instruction following / grounding. Swap to `llama-3.1-8b-instant` in `route.ts` if you prioritize latency/cost over answer quality.
+**Model choice:** `openai/gpt-oss-120b` (with `reasoning_effort: "low"`) for better instruction following / grounding. Swap to `openai/gpt-oss-20b` in `route.ts` if you prioritize latency/cost over answer quality. Groq retires models regularly — check [Groq deprecations](https://console.groq.com/docs/deprecations) if chat starts failing.
 
 ### Rate limiting (honest tradeoff)
 
